@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "academia-digital-dio-final",
+    "name": "Academia Digital - DIO",
+    "description": "API REST do desafio Academia Digital - DIO",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:8081"},
+    {"key": "alunoId", "value": "1"},
+    {"key": "avaliacaoId", "value": "1"},
+    {"key": "matriculaId", "value": "1"}
+  ],
+  "item": [
+    {
+      "name": "ALUNOS",
+      "item": [
+        {
+          "name": "POST /alunos - Criar aluno",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"nome\": \"João da Silva\",\n  \"cpf\": \"98765432100\",\n  \"bairro\": \"Jardim Camburi\",\n  \"dataDeNascimento\": \"1990-05-15\"\n}"},
+            "url": {"raw": "{{baseUrl}}/alunos", "host": ["{{baseUrl}}"], "path": ["alunos"]}
+          }
+        },
+        {
+          "name": "GET /alunos - Listar alunos",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/alunos", "host": ["{{baseUrl}}"], "path": ["alunos"]}}
+        },
+        {
+          "name": "GET /alunos/{{alunoId}} - Buscar aluno",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/alunos/{{alunoId}}", "host": ["{{baseUrl}}"], "path": ["alunos", "{{alunoId}}"]}}
+        },
+        {
+          "name": "PUT /alunos/{{alunoId}} - Atualizar aluno",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"nome\": \"João da Silva Atualizado\",\n  \"cpf\": \"98765432100\",\n  \"bairro\": \"Jardim Camburi\",\n  \"dataDeNascimento\": \"1990-05-15\"\n}"},
+            "url": {"raw": "{{baseUrl}}/alunos/{{alunoId}}", "host": ["{{baseUrl}}"], "path": ["alunos", "{{alunoId}}"]}
+          }
+        },
+        {
+          "name": "DELETE /alunos/{{alunoId}} - Excluir aluno",
+          "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/alunos/{{alunoId}}", "host": ["{{baseUrl}}"], "path": ["alunos", "{{alunoId}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "AVALIAÇÕES FÍSICAS",
+      "item": [
+        {
+          "name": "POST /avaliacoes - Criar avaliação",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"alunoId\": 1,\n  \"peso\": 85.5,\n  \"altura\": 1.75\n}"},
+            "url": {"raw": "{{baseUrl}}/avaliacoes", "host": ["{{baseUrl}}"], "path": ["avaliacoes"]}
+          }
+        },
+        {
+          "name": "GET /avaliacoes - Listar avaliações",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/avaliacoes", "host": ["{{baseUrl}}"], "path": ["avaliacoes"]}}
+        },
+        {
+          "name": "GET /avaliacoes/{{avaliacaoId}} - Buscar avaliação",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/avaliacoes/{{avaliacaoId}}", "host": ["{{baseUrl}}"], "path": ["avaliacoes", "{{avaliacaoId}}"]}}
+        },
+        {
+          "name": "PUT /avaliacoes/{{avaliacaoId}} - Atualizar avaliação",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"peso\": 83.0,\n  \"altura\": 1.75\n}"},
+            "url": {"raw": "{{baseUrl}}/avaliacoes/{{avaliacaoId}}", "host": ["{{baseUrl}}"], "path": ["avaliacoes", "{{avaliacaoId}}"]}
+          }
+        },
+        {
+          "name": "DELETE /avaliacoes/{{avaliacaoId}} - Excluir avaliação",
+          "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/avaliacoes/{{avaliacaoId}}", "host": ["{{baseUrl}}"], "path": ["avaliacoes", "{{avaliacaoId}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "MATRÍCULAS",
+      "item": [
+        {
+          "name": "POST /matriculas - Criar matrícula",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"alunoId\": 1\n}"},
+            "url": {"raw": "{{baseUrl}}/matriculas", "host": ["{{baseUrl}}"], "path": ["matriculas"]}
+          }
+        },
+        {
+          "name": "GET /matriculas - Listar matrículas",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/matriculas", "host": ["{{baseUrl}}"], "path": ["matriculas"]}}
+        },
+        {
+          "name": "GET /matriculas?bairro=Jardim Camburi - Filtrar por bairro",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/matriculas?bairro=Jardim%20Camburi",
+              "host": ["{{baseUrl}}"],
+              "path": ["matriculas"],
+              "query": [{"key": "bairro", "value": "Jardim Camburi"}]
+            }
+          }
+        },
+        {
+          "name": "GET /matriculas/{{matriculaId}} - Buscar matrícula",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/matriculas/{{matriculaId}}", "host": ["{{baseUrl}}"], "path": ["matriculas", "{{matriculaId}}"]}}
+        },
+        {
+          "name": "DELETE /matriculas/{{matriculaId}} - Excluir matrícula",
+          "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/matriculas/{{matriculaId}}", "host": ["{{baseUrl}}"], "path": ["matriculas", "{{matriculaId}}"]}}
+        }
+      ]
+    }
+  ]
+}
